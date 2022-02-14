@@ -5,7 +5,7 @@ const CreateBlog =()=>{
     const [title,setTitle]=useState('');
     const [auther,setAuther]=useState('shiva');
     const [body,setBody]=useState('');
-
+    
     const history=useHistory();
 
     const data={title,auther,body};
@@ -19,6 +19,7 @@ const CreateBlog =()=>{
             body:JSON.stringify(data)
     }).then(()=>{
         //history.go(1);//privious page
+        //programmatic Redirect
         history.push('/');//currunt location to go
     })
     }
