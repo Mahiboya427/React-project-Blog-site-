@@ -21,7 +21,8 @@ function App() {
             <Route exact path='/create'>
               <CreateBlog/>
             </Route>
-            <Route path='/blogs'>
+            {/* route parameter*/}
+            <Route path='/blogs/:id'>
                 <BlogDetails/>
             </Route>
           </Switch>

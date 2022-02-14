@@ -7,7 +7,7 @@ const Display=({name ,blogs})=>{
                 let {id,title,body,auther}=blog
                 return(
                     <div key={id} className='blog-view'>
-                        <Link to='/blogs'>
+                        <Link to={`/blogs/${id}`}>
                             <h3>{title}</h3>
                             <p>{body}</p>
                             <p>{auther}</p>
@@ -17,7 +17,7 @@ const Display=({name ,blogs})=>{
                     </div>
                     
                     
-            )})}
+            )})} 
         </div>
     )
 
