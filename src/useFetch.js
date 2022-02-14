@@ -9,12 +9,20 @@ import React,{useState,useEffect} from "react";
         const [Loading,setLoading]=useState(true);
         const [error,setError]=useState(true);
 
+/*
+        const handledelete=(id)=>{
+          console.log("delete",id)
+          const newblogs=blogs.filter( bob => bob.id!==id);
+          setblogs(newblogs);
+*/
 
 
 
 
         useEffect( ()=>{
-            setTimeout( () => {fetch(url)
+
+          const abortController=new AbortController();
+            setTimeout( () => {fetch(url,{signal:abortController.signal})
             //.then(response => console.log(response.json()))
               .then(response =>{
                   if(!response.ok){
@@ -29,11 +37,20 @@ import React,{useState,useEffect} from "react";
                   setLoading(false);
     
                 }).catch(error=>{
-                    setLoading(false);
-                    setError(error.message);
+                    if (error.name==='AbortError'){
+                      console.log('abort the fetch');
+                    }else{
+                      setLoading(false);
+                    setError(error.message);  
+                    }
+
+                    
                 });
-              },2000
-              )
+              },2000)
+                  //cleanup function for useEffect
+                  return () => abortController.abort();
+                  //return () => console.log('clean up');              
+              
                 //.then(response => console.log(response));
           //    console.log("useeffect ran");
           //    console.log(blogs);

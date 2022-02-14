@@ -2,25 +2,36 @@ import Navbar from './Navbar';
 import Home from './Home';
 import CreateBlog from './CreateBlog';
 
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router,Route,Switch} from 'react-router-dom';
+import BlogDetails from './BlogDetails';
 
 
 //templates
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
           <Navbar/>
           <div className='content'>
-          <Home/>
-          <CreateBlog/>
+          <Switch>
+            <Route exact path='/'>
+            {/*<Route exact path='/' component={home}></Route> another method!!*/}
+              <Home/>
+            </Route>
+            <Route exact path='/create'>
+              <CreateBlog/>
+            </Route>
+            <Route path='/blogs'>
+                <BlogDetails/>
+            </Route>
+          </Switch>
           </div>
         { /*<Example/>*/}
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }
-
+ 
 export default App;
 
 /*
